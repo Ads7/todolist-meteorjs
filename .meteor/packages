@@ -8,3 +8,4 @@ meteor-platform
 cryptoquick:stylus-multi
 accounts-password
 accounts-ui
+accounts-facebook
