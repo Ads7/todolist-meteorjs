@@ -21,10 +21,7 @@ if (Meteor.isClient) {
     'submit .new-item': function(event){
       var title = event.target.title.value;
 
-      Todolists.insert({
-        title: title,
-        createdAt: new Date()
-      });
+     Meteor.call("addTodolist", title);
       event.target.title.value ="";
 
       return false
@@ -37,10 +34,10 @@ if (Meteor.isClient) {
   });  
 Template.todolist.events({
   'click .toggle-checked':function(){
-    Todolists.update(this._id, {$set:{checked: !this.checked}});
-  },
+    Meteor.call("updateTodolist",this._id,  !this.checked)  
+      },
 'click .delete': function(){
-  Todolists.remove(this._id);
+  Meteor.call("deleteTodolist",this._id);
 }
 });
 Accounts.ui.config({
@@ -53,3 +50,20 @@ if (Meteor.isServer) {
     // code to run on server at startup
   });
 }
+
+Meteor.methods({
+  addTodolist:function(title){
+     Todolists.insert({
+        title: title,
+        createdAt: new Date()
+        
+      });
+  },
+  updateTodolist: function(id, checked){
+    Todolists.update(this._id, {$set:{checked: checked}});
+
+  },
+  deleteTodolist: function(id){
+    Todolists.remove(id);
+  }
+});
