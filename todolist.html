@@ -1,0 +1,34 @@
+<head>
+  <title>todolist</title>
+</head>
+
+<body>
+  <div class="container">
+  <header>
+  <h1>Welcome to your list</h1>
+  <label class="hide-finished">
+  	<input type="checkbox" checked="{{hideFinished}}">
+  	Hide Finished
+  </label>
+  {{#if currrentUser}}
+  <form class="new-item">
+  	<input type="text" name="title" placeholder="new item">
+  	<input type="submit" value="Submit">
+  </form>
+  {{/if}}
+  </header>
+  <ul>
+  {{#each todolists}}
+  		{{> todolist}}
+  {{/each}}
+  </ul>
+  {{>loginButtons}}
+  </div>
+</body>
+<template name="todolist">
+  <li class="{{#if checked}}checked{{/if}}">
+  <input type="checkbox" checked="{{checked}}" class="toggle-checked">
+  <span class="text" >{{title}}</span>
+  <button class="delete">Remove</button>
+  </li>
+</template>
