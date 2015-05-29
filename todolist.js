@@ -34,7 +34,7 @@ if (Meteor.isClient) {
   });  
 Template.todolist.events({
   'click .toggle-checked':function(){
-    Meteor.call("updateTodolist",this._id,  !this.checked)  
+    Meteor.call("updateTodolist",this._id, !this.checked);  
       },
 'click .delete': function(){
   Meteor.call("deleteTodolist",this._id);
@@ -60,7 +60,7 @@ Meteor.methods({
       });
   },
   updateTodolist: function(id, checked){
-    Todolists.update(this._id, {$set:{checked: checked}});
+    Todolists.update(id, {$set:{checked: checked}});
 
   },
   deleteTodolist: function(id){
