@@ -10,7 +10,7 @@
   	<input type="checkbox" checked="{{hideFinished}}">
   	Hide Finished
   </label>
-  {{#if currrentUser}}
+  {{#if currentUser}}
   <form class="new-item">
   	<input type="text" name="title" placeholder="new item">
   	<input type="submit" value="Submit">
@@ -27,8 +27,19 @@
 </body>
 <template name="todolist">
   <li class="{{#if checked}}checked{{/if}}">
+  {{#if isOwner}}
   <input type="checkbox" checked="{{checked}}" class="toggle-checked">
-  <span class="text" >{{title}}</span>
+  <button class="toggle-private">
+  	{{#if private}}
+  		Private
+  	{{else}}
+  		Public
+  	{{/if }}	
+  </button>
+  {{/if}}
+  <span class="text" >{{title}}</span> 
+    {{#if isOwner}}
   <button class="delete">Remove</button>
+  {{/if}}
   </li>
 </template>

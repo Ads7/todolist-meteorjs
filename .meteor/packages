@@ -5,8 +5,7 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
-insecure
 cryptoquick:stylus-multi
 accounts-password
 accounts-ui
+accounts-facebook
